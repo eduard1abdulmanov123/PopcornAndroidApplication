@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container_error"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:visibility="gone">
+
+    <ImageView
+        android:id="@+id/error_icon"
+        android:layout_width="@dimen/size_error_icon"
+        android:layout_height="@dimen/size_error_icon"
+        android:layout_marginBottom="4dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/error"
+        app:layout_constraintBottom_toTopOf="@+id/error_text_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/error_text_1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/error1"
+        android:textColor="@color/color_text_primary"
+        android:textSize="@dimen/size_text_title"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/error_text_2"
+        app:layout_constraintEnd_toEndOf="@+id/error_icon"
+        app:layout_constraintStart_toStartOf="@+id/error_icon" />
+
+    <TextView
+        android:id="@+id/error_text_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="4dp"
+        android:gravity="center"
+        android:text="@string/error2"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="@dimen/size_text_secondary"
+        app:layout_constraintBottom_toTopOf="@+id/button_refresh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.github.nikartm.button.FitButton
+        android:id="@+id/button_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:paddingLeft="@dimen/padding_left_right_button_refresh"
+        android:paddingTop="@dimen/padding_top_bottom_button_refresh"
+        android:paddingRight="@dimen/padding_left_right_button_refresh"
+        android:paddingBottom="@dimen/padding_top_bottom_button_refresh"
+        app:fb_backgroundColor="@color/colorPrimary"
+        app:fb_cornerRadius="@dimen/radius_button_refresh"
+        app:fb_rippleColor="@color/colorAccent"
+        app:fb_text="@string/button_refresh"
+        app:fb_textColor="@color/color_text_white"
+        app:fb_textSize="@dimen/size_text_secondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/error_text_1"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="@+id/error_text_1" />
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/refresh_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:indicatorColor="@color/color_progress_bar"
+        app:indicatorName="BallPulseIndicator"
+        app:layout_constraintBottom_toBottomOf="@+id/button_refresh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/error_text_2" />
+</androidx.constraintlayout.widget.ConstraintLayout>

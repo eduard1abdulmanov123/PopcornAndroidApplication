@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="size_text_title">20sp</dimen>
+    <dimen name="size_text_primary">16sp</dimen>
+    <dimen name="size_text_secondary">14sp</dimen>
+    <dimen name="size_text_small">12sp</dimen>
+
+    <!--Search_View-->
+    <dimen name="ic_size">48dp</dimen>
+
+    <!--big_list_item-->
+    <dimen name="big_margin_external_left_right">16dp</dimen>
+    <dimen name="big_margin_external_top_bottom">8dp</dimen>
+    <dimen name="big_corner_radius">10dp</dimen>
+
+    <!--little_list_item-->
+    <dimen name="little_margin_external_left_right">8dp</dimen>
+    <dimen name="little_margin_external_top_bottom">4dp</dimen>
+    <dimen name="little_poster_width">110dp</dimen>
+    <dimen name="little_poster_height">150dp</dimen>
+    <dimen name="little_corner_radius">10dp</dimen>
+
+    <!--container_error-->
+    <dimen name="size_error_icon">230dp</dimen>
+    <dimen name="radius_button_refresh">6dp</dimen>
+    <dimen name="padding_left_right_button_refresh">15dp</dimen>
+    <dimen name="padding_top_bottom_button_refresh">7dp</dimen>
+
+    <!--activity_details-->
+    <dimen name="details_back_button_size">30dp</dimen>
+    <dimen name="details_title_text_size">25sp</dimen>
+    <dimen name="details_budget_revenue_size">25dp</dimen>
+    <dimen name="details_credits_profile_image_height">160dp</dimen>
+    <dimen name="details_credits_profile_image_width">130dp</dimen>
+    <dimen name="details_video_thumbnail_height">200dp</dimen>
+</resources>

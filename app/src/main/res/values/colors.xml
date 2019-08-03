@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">#3D3F56</color>
+    <color name="colorPrimary">#3d3f56</color>
+    <color name="colorPrimaryDark">#2E3041</color>
+    <color name="colorAccent">#5F6274</color>
+    <color name="color_cursor">#A6FFFFFF</color>
+    <color name="color_progress_bar">#3d3f56</color>
+    <color name="color_background_image">#EBEBEB</color>
+    <color name="color_background">#F8F8F8</color>
+
+    <!--bottom_navigation-->
+    <color name="color_select_item">#FFFFFF</color>
+    <color name="color_normal_item">#A6FFFFFF</color>
+    <color name="color_navigation_view">#3d3f56</color>
+
+    <!--search_view-->
+    <color name="color_item_search_view">#3d3f56</color>
+
+
+    <color name="color_text_title">#000000</color>
+    <color name="color_text_primary">#353535</color>
+    <color name="color_text_secondary">#9B9B9B</color>
+    <color name="color_text_white">#FFFFFF</color>
+</resources>

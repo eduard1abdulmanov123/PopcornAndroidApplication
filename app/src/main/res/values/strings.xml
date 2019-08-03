@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">Popcorn</string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+
+    <string name="vote_count_zero">Данный фильм еще не оценен</string>
+    <plurals name="vote_count">
+        <item quantity="one">На основании %d оценки</item>
+        <item quantity="other">На основании %d оценок</item>
+    </plurals>
+
+    <plurals name="runtime_hours">
+        <item quantity="one">%d час</item>
+        <item quantity="few">%d часа</item>
+        <item quantity="many">%d часов</item>
+    </plurals>
+
+    <plurals name="runtime_minutes">
+        <item quantity="one">%d минута</item>
+        <item quantity="few">%d минуты</item>
+        <item quantity="many">%d минут</item>
+    </plurals>
+
+    <!--bottom_navigation-->
+    <string name="movie">Кино</string>
+    <string name="search">Поиск</string>
+    <string name="library">Библиотека</string>
+
+    <!--tab layout-->
+    <string name="now_playing">В прокате</string>
+    <string name="upcoming">Скоро</string>
+    <string name="top_rated">Лучшие</string>
+
+
+    <!--searchView-->
+    <string name="search_hint">Поиск</string>
+    <string name="empty_data">По вашему запросу ничего не нашлось</string>
+
+    <!--container_error-->
+    <string name="error1">Ой! Что-то пошло не так</string>
+    <string name="error2">Проверьте соединение с интернетом или немного подождите.Возможно ведуться технические работы</string>
+    <string name="button_refresh">Обновить страницу</string>
+
+    <!--activity_details-->
+    <string name="details_max_average">/10</string>
+    <string name="details_country">Страна</string>
+    <string name="details_genre">Жанр</string>
+    <string name="details_time">Время</string>
+    <string name="details_money">Финансы</string>
+    <string name="details_budget">Бюджет</string>
+    <string name="details_revenue">Сборы</string>
+    <string name="details_description">Описание</string>
+    <string name="details_credits">Актеры и съемочная группа</string>
+    <string name="details_trailers">Трейлеры</string>
+    <string name="details_exist_library">Фильм уже находится в библиотеки</string>
+    <string name="details_added_film">Фильм был добавлен в библиотеку</string>
+
+    <!--library_fragment-->
+    <string name="library_empty_data">Библиотека в данный момент пуста</string>
+</resources>

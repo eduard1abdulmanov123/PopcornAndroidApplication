@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FlowLayout">
+        <attr name="max_line" format="integer"/>
+        <attr name="indents_between_elements" format="dimension"/>
+        <attr name="gravity" format="enum">
+            <enum name="center" value="1"/>
+            <enum name="right" value="5"/>
+            <enum name="left" value="3"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="CustomImageView">
+        <attr name="foreground"/>
+    </declare-styleable>
+
+</resources>
