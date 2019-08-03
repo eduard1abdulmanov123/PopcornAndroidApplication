@@ -7,17 +7,17 @@ The app fetches movie data using [themoviedb.org](https://www.themoviedb.org/) A
 ## Movies:
 Now Playing | Upcoming | Top Rated
 :-------------:|:-------------:|:-------------:
-<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/1.jpg" width="309" height="518">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/2.jpg" width="309" height="518">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/3.jpg" width="309" height="518">
+<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/1.jpg" width="309" height="480">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/2.jpg" width="309" height="480">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/3.jpg" width="309" height="480">
 
 ##  Details:
 1 | 2 | 3
 :-------------:|:-------------:|:-------------:
-<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/4.jpg" width="309" height="518">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/5.jpg" width="309" height="518">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/6.jpg" width="309" height="518">
+<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/4.jpg" width="309" height="480">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/5.jpg" width="309" height="480">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/6.jpg" width="309" height="480">
 
 ## Search and Library:
 Search | Library | Library Empty 
 :-------------:|:-------------:|:-------------:
-<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/7.jpg" width="309" height="518">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/8.jpg" width="309" height="518">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/9.jpg" width="309" height="518">
+<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/7.jpg" width="309" height="480">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/8.jpg" width="309" height="480">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/9.jpg" width="309" height="480">
 
 # Features
 * Infinite scrolling with RecyclerView
