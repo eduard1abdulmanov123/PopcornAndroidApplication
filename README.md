@@ -25,3 +25,19 @@ Search | Library | Library Empty
 * Search movies by title
 * Mark as favorite any movie for easy access in the future
 * Watch movie trailers and read movie reviews.
+
+# Used Libraries:
+* RxJava2 and Retrofit2 libraries to manage Rest Client
+* Picasso library to load images
+* Room library for implementation of database
+* Dagger2 library for dependency injection
+
+# Design pattern
+* Was used the design pattern MVP(Model View Presenter) to make the code simple, understandable, testable and easily maintainable
+* To weaken the relationship code was created, the core module, where you write code making requests to the server, and also implemented to work with the database
+
+# In the next version
+* Will be added filters to search(by year, genre, rating)
+* To be added with the recommendations of the movies
+* There will be a better library. You can sort, divide, and perform other manipulations with movies
+* So it will be an improved design
