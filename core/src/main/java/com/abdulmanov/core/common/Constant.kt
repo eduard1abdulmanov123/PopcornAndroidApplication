@@ -16,8 +16,8 @@ interface Constant {
             const val BASE_POSTER_PATH_URL_550 = "http://image.tmdb.org/t/p/w500/"
             const val BASE_POSTER_PATH_URL_185 = "http://image.tmdb.org/t/p/w185/"
             const val BASE_PROFILE_PATH_URL_185 = "http://image.tmdb.org/t/p/w185/"
-            const val KEY_MOVIES = "d5a20babadb07a6d9680fb3db1db6faf"
-            const val KEY_TRAILER = "AIzaSyAdp081dUfcZ6hYit_xpXiN5S7VJsCb3Og"
+            const val KEY_MOVIES = ""
+            const val KEY_TRAILER = ""
             const val CACHE_SIZE = 10 * 1024 * 1024
             const val MAX_AGE = 60 * 60
             const val MAX_SCALE = 60 * 60 * 24 * 7
