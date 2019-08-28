@@ -29,5 +29,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <include layout="@layout/empty_progress_bar"/>
+    <include layout="@layout/content_empty_progress_bar"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

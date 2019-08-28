@@ -2,8 +2,9 @@ package com.abdulmanov.core.network.api
 
 
 import com.abdulmanov.core.common.Constant.Network.Companion.KEY_MOVIES
-import com.abdulmanov.core.network.dto.movies.FilmDetailsDTO
-import com.abdulmanov.core.network.dto.movies.GenresDTO
+import com.abdulmanov.core.network.dto.genres.GenresMovieDTO
+import com.abdulmanov.core.network.dto.people.PeopleDetailsDTO
+import com.abdulmanov.core.network.dto.movies.MoviesDetailsDTO
 import com.abdulmanov.core.network.dto.movies.MoviesDTO
 import retrofit2.Call
 import retrofit2.http.GET
@@ -49,14 +50,20 @@ interface ApiMoviesInterface {
         @Query("query") query: String
     ): Call<MoviesDTO>
 
-    @GET("movie/{id}?api_key=$KEY_MOVIES&append_to_response=videos%2Ccredits")
+    @GET("movie/{id}?api_key=$KEY_MOVIES&append_to_response=videos%2Ccredits%2Csimilar")
     fun getDetailFilm(
-        @Path("id") id: Int,
+        @Path("id") id: Long,
         @Query("language") language: String
-    ): Call<FilmDetailsDTO>
+    ): Call<MoviesDetailsDTO>
+
+    @GET("person/{person_id}?api_key=$KEY_MOVIES&append_to_response=movie_credits%2Ctv_credits%2Ctranslations%2Cexternal_ids")
+    fun getDetailCredit(
+        @Path("person_id") personId: Long,
+        @Query("language") language: String
+    ): Call<PeopleDetailsDTO>
 
     @GET("genre/movie/list?api_key=$KEY_MOVIES")
     fun getGenres(
         @Query("language") language: String
-    ): Call<GenresDTO>
+    ): Call<GenresMovieDTO>
 }

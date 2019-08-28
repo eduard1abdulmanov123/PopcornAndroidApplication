@@ -2,76 +2,57 @@ package com.abdulmanov.core.network.model
 
 
 import android.content.Context
-import android.util.Log
-import com.abdulmanov.core.common.Constant.Network.Companion.BASE_POSTER_PATH_URL_185
-import com.abdulmanov.core.common.Constant.Network.Companion.BASE_POSTER_PATH_URL_550
-import com.abdulmanov.core.common.Constant.Thread.Companion.IO_THREAD
-import com.abdulmanov.core.common.Constant.Thread.Companion.UI_THREAD
-import com.abdulmanov.core.network.api.ApiMoviesInterface
-import com.abdulmanov.core.network.api.ApiTrailerInterface
-import com.abdulmanov.core.network.common.getProfilePath
-import com.abdulmanov.core.network.common.getThumbnail
-import com.abdulmanov.core.network.common.init
-import com.abdulmanov.core.network.common.toMap
-import com.abdulmanov.core.network.di.component.DaggerNetworkComponent
-import com.abdulmanov.core.network.di.module.NetworkModule
-import com.abdulmanov.core.network.dto.movies.FilmDetailsDTO
+import com.abdulmanov.core.common.Constant.Network.Companion.MOVIES_BASE_URL
+import com.abdulmanov.core.network.api.ApiModule
+import com.abdulmanov.core.common.setupGenres
+import com.abdulmanov.core.common.toMap
+import com.abdulmanov.core.network.dto.people.PeopleDetailsDTO
+import com.abdulmanov.core.network.dto.movies.MoviesDetailsDTO
 import com.abdulmanov.core.network.dto.movies.MoviesDTO
-import com.abdulmanov.core.network.dto.movies.VideoDTO
-import io.reactivex.Observable
-import io.reactivex.ObservableTransformer
 import io.reactivex.Scheduler
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
-import javax.inject.Inject
-import javax.inject.Named
 
 class NetworkModelImpl(context: Context): Model {
 
-    @Inject
-    lateinit var apiMovies: ApiMoviesInterface
-
-    @Inject
-    lateinit var apiTrailer: ApiTrailerInterface
-
-    @Inject
-    @field:Named(UI_THREAD)
-    lateinit var uiThread: Scheduler
-
-    @Inject
-    @field:Named(IO_THREAD)
-    lateinit var ioThread: Scheduler
-
-    private var genres: Map<Long, String>? = null
-
-    init {
-        Log.d("Model","create Network")
-        DaggerNetworkComponent.builder().networkModule(NetworkModule(context)).build().inject(this)
+    private val apiMovies by lazy {
+        ApiModule.getApiMoviesInterface(context, MOVIES_BASE_URL)
     }
+    private val uiThread by lazy {
+        AndroidSchedulers.mainThread()
+    }
+    private val ioThread: Scheduler by lazy {
+        Schedulers.io()
+    }
+
+    private var genresMap: Map<Long, String>? = null
 
     override fun getNowPlayingMovies(
         page: String,
         lang: String,
         reg: String
-    ): Observable<MoviesDTO> {
-        return responseMovies(lang, BASE_POSTER_PATH_URL_550) {
+    ): Single<MoviesDTO> {
+        return responseMovies(lang) {
             apiMovies.getNowPlayingMovies(page, lang, reg)
         }
     }
 
-    override fun getUpcomingMovies(page: String, lang: String, reg: String): Observable<MoviesDTO> {
-        return responseMovies(lang, BASE_POSTER_PATH_URL_550) {
+    override fun getUpcomingMovies(page: String, lang: String, reg: String): Single<MoviesDTO> {
+        return responseMovies(lang) {
             apiMovies.getUpcomingMovies(page, lang, reg)
         }
     }
 
-    override fun getTopRatedMovies(page: String, lang: String, reg: String): Observable<MoviesDTO> {
-        return responseMovies(lang, BASE_POSTER_PATH_URL_185) {
+    override fun getTopRatedMovies(page: String, lang: String, reg: String): Single<MoviesDTO> {
+        return responseMovies(lang) {
             apiMovies.getTopRatedMovies(page, lang, reg)
         }
     }
 
-    override fun getPopularMovies(page: String, lang: String, reg: String): Observable<MoviesDTO> {
-        return responseMovies(lang, BASE_POSTER_PATH_URL_185) {
+    override fun getPopularMovies(page: String, lang: String, reg: String): Single<MoviesDTO> {
+        return responseMovies(lang) {
             apiMovies.getPopularMovies(page, lang, reg)
         }
     }
@@ -81,88 +62,67 @@ class NetworkModelImpl(context: Context): Model {
         lang: String,
         reg: String,
         key: String
-    ): Observable<MoviesDTO> {
-        return responseMovies(lang, BASE_POSTER_PATH_URL_185) {
+    ): Single<MoviesDTO> {
+        return responseMovies(lang) {
             apiMovies.getSearchMovies(page, lang, reg, key)
         }
     }
 
-    override fun getDetailFilm(id: Int, lang: String): Observable<FilmDetailsDTO> {
-        val observable = Observable.create<FilmDetailsDTO> { subscriber ->
+    override fun getDetailFilm(id: Long, lang: String): Single<MoviesDetailsDTO> {
+        val single = Single.create<MoviesDetailsDTO> { emitter ->
             val responseDetailFilm = apiMovies.getDetailFilm(id, lang).execute()
-            if (responseDetailFilm.isSuccessful) {
-                with(responseDetailFilm.body()!!) {
-                    val poster = BASE_POSTER_PATH_URL_550 + posterPath
-                    val creditsCopy = credits.copy(
-                        cast = credits.cast.map { it.copy(profilePath = it.getProfilePath()) },
-                        crew = credits.crew.map { it.copy(profilePath = it.getProfilePath()) }
-                    )
-
-                    val videosCopy = videos.copy(results = getThumbnailTrailer(videos.results))
-                    subscriber.onNext(
-                        copy(
-                            posterPath = poster,
-                            credits = creditsCopy,
-                            videos = videosCopy
-                        )
-                    )
-                }
-                subscriber.onComplete()
-            } else {
-                subscriber.onError(Throwable(responseDetailFilm.message()))
-            }
-        }
-        return observable.compose(applySchedulers())
-    }
-
-    private fun getThumbnailTrailer(keys: List<VideoDTO>): List<VideoDTO> {
-        val videos = mutableListOf<VideoDTO>()
-        keys.filter { it.site == "YouTube" }.forEach {
-            val response = apiTrailer.getTrailerInfo(it.path).execute()
-            if (response.isSuccessful) {
-                videos.add(
-                    it.copy(thumbnail = response.body()!!.getThumbnail())
-                )
-            }
-        }
-        return videos
-    }
-
-    private fun responseMovies(
-        lang: String,
-        imageUrl: String,
-        func: () -> Call<MoviesDTO>
-    ): Observable<MoviesDTO> {
-        val observable = Observable.create<MoviesDTO> { subscriber ->
-            val resMovies = func().execute()
             initializeGenres(lang)
-            if (resMovies.isSuccessful && genres != null) {
-                val data = resMovies.body()!!
-                subscriber.onNext(data.copy(
-                    results = data.results.map { it.init(imageUrl, genres!!) }
-                ))
-                subscriber.onComplete()
+            if (responseDetailFilm.isSuccessful && genresMap != null) {
+                with(responseDetailFilm.body()!!) {
+                    emitter.onSuccess(copy(similar = similar.setupGenres(genresMap!!)))
+                }
             } else {
-                subscriber.onError(Throwable(resMovies.message()))
+                emitter.onError(Throwable(responseDetailFilm.message()))
             }
         }
-        return observable.compose(applySchedulers())
+        return single.subscribeOn(ioThread).observeOn(uiThread)
+    }
+
+    override fun getPeopleDetails(id: Long, lang: String): Single<PeopleDetailsDTO> {
+        val single = Single.create<PeopleDetailsDTO> { emitter ->
+            val responseDetailCredit = apiMovies.getDetailCredit(id,lang).execute()
+            initializeGenres(lang)
+            if (responseDetailCredit.isSuccessful && genresMap != null) {
+                with(responseDetailCredit.body()!!) {
+                    val filmography = movieCredit.copy(
+                        castPeople = movieCredit.castPeople.map { it.setupGenres(genresMap!!)},
+                        crewPeople = movieCredit.crewPeople.map { it.setupGenres(genresMap!!)}
+                    )
+                    emitter.onSuccess(copy(movieCredit = filmography))
+                }
+            } else {
+                emitter.onError(Throwable(responseDetailCredit.message()))
+            }
+        }
+        return single.subscribeOn(ioThread).observeOn(uiThread)
+    }
+
+    private fun responseMovies(lang: String, func: () -> Call<MoviesDTO>): Single<MoviesDTO> {
+        val single = Single.create<MoviesDTO> { emitter ->
+            val responseMovies = func().execute()
+            initializeGenres(lang)
+            if (responseMovies.isSuccessful && genresMap != null) {
+                with(responseMovies.body()!!) {
+                    emitter.onSuccess(setupGenres(genresMap!!))
+                }
+            } else {
+                emitter.onError(Throwable(responseMovies.message()))
+            }
+        }
+        return single.subscribeOn(ioThread).observeOn(uiThread)
     }
 
     private fun initializeGenres(language: String) {
-        if (genres == null) {
+        if (genresMap == null) {
             val response = apiMovies.getGenres(language).execute()
             if (response.isSuccessful) {
-                genres = response.body()?.toMap()
+                genresMap = response.body()?.toMap()
             }
-        }
-    }
-
-    private fun <T> applySchedulers(): ObservableTransformer<T, T> {
-        return ObservableTransformer { observable ->
-            observable.subscribeOn(ioThread)
-                .observeOn(uiThread)
-                .unsubscribeOn(ioThread)
         }
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.abdulmanov.myapplication">
+    package="com.abdulmanov.MoviCorn">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,16 +11,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ui.details.VideoActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout" >
-        </activity>
-        <activity android:name=".ui.details.DetailsActivity"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.details_person.DetailsPersonActivity"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".ui.details_movie.DetailsMovieActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.MainActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

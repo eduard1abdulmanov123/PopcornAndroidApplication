@@ -8,16 +8,36 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <!--TabLayout-->
     <style name="TextAppearanceTabLayout" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
         <item name="android:textSize">@dimen/size_text_secondary</item>
     </style>
 
-
     <style name="StyleSingleLineTextView">
         <item name="android:ellipsize">end</item>
         <item name="android:singleLine">true</item>
         <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="SearchViewStyle">
+        <item name="icon_search">@drawable/ic_search_gray</item>
+        <item name="icon_clear">@drawable/ic_clear_gray</item>
+        <item name="icon_back">@drawable/ic_back_gray</item>
+    </style>
+    
+    <style name="ButtonStyle">
+        <item name="fb_rippleColor">@color/color_button_pressed</item>
+        <item name="fb_textSize">@dimen/size_text_secondary</item>
+        <item name="fb_cornerRadius">@dimen/button_corner</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/button_padding_left</item>
+        <item name="android:paddingRight">@dimen/button_padding_right</item>
+        <item name="android:paddingBottom">@dimen/button_padding_bottom</item>
+        <item name="android:paddingTop">@dimen/button_padding_top</item>
+        <item name="android:gravity">center</item>
     </style>
 </resources>

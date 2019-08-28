@@ -12,8 +12,9 @@ import com.abdulmanov.core.database.db.dao.MovieDao
 import com.abdulmanov.core.database.db.entity.Movie
 
 
-@Database(entities = [Movie::class],version = DATABASE_VERSION)
+@Database(entities = [Movie::class],version = DATABASE_VERSION, exportSchema = false)
 abstract class MoviesDataBase: RoomDatabase() {
+
     abstract fun movieDao(): MovieDao
 
     companion object {

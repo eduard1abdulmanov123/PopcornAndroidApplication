@@ -5,6 +5,13 @@
     <dimen name="size_text_secondary">14sp</dimen>
     <dimen name="size_text_small">12sp</dimen>
 
+    <!--button_corner-->
+    <dimen name="button_padding_left">15dp</dimen>
+    <dimen name="button_padding_right">15dp</dimen>
+    <dimen name="button_padding_top">7dp</dimen>
+    <dimen name="button_padding_bottom">7dp</dimen>
+    <dimen name="button_corner">6dp</dimen>
+
     <!--Search_View-->
     <dimen name="ic_size">48dp</dimen>
 
@@ -26,11 +33,17 @@
     <dimen name="padding_left_right_button_refresh">15dp</dimen>
     <dimen name="padding_top_bottom_button_refresh">7dp</dimen>
 
-    <!--activity_details-->
-    <dimen name="details_back_button_size">30dp</dimen>
+    <!--activity_details_movie-->
+    <dimen name="details_toolbar_button_size">40dp</dimen>
     <dimen name="details_title_text_size">25sp</dimen>
     <dimen name="details_budget_revenue_size">25dp</dimen>
     <dimen name="details_credits_profile_image_height">160dp</dimen>
     <dimen name="details_credits_profile_image_width">130dp</dimen>
-    <dimen name="details_video_thumbnail_height">200dp</dimen>
+    <dimen name="details_video_thumbnail_height">160dp</dimen>
+    <dimen name="details_video_thumbnail_width">260dp</dimen>
+    <dimen name="details_similar_movie_image_height">160dp</dimen>
+    <dimen name="details_similar_movie_image_width">130dp</dimen>
+
+    <!--activity_details_person-->
+    <dimen name="details_person_size_icon">25dp</dimen>
 </resources>

@@ -1,6 +1,11 @@
 <resources>
-    <string name="app_name">Popcorn</string>
+    <string name="app_name">MoviCorn</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="read_more">Читать больше</string>
+    <string name="view_all">Показать всё</string>
+    <string name="back">Назад</string>
+    <string name="send">Отправить</string>
+    <string name="add">Добавить в избранное</string>
 
     <string name="vote_count_zero">Данный фильм еще не оценен</string>
     <plurals name="vote_count">
@@ -12,13 +17,42 @@
         <item quantity="one">%d час</item>
         <item quantity="few">%d часа</item>
         <item quantity="many">%d часов</item>
+        <item quantity="other">%d часов</item>
     </plurals>
 
     <plurals name="runtime_minutes">
         <item quantity="one">%d минута</item>
         <item quantity="few">%d минуты</item>
         <item quantity="many">%d минут</item>
+        <item quantity="other">%d минут</item>
     </plurals>
+
+
+    <!--external_ids-->
+    <string name="the_movie_db">The Movie DB</string>
+    <string name="imbd">IMBd</string>
+    <string name="facebook">Facebook</string>
+    <string name="twitter">Twitter</string>
+    <string name="instagram">Instagram</string>
+
+    <!--month-->
+    <string name="january">Января</string>
+    <string name="february">Февраля</string>
+    <string name="march">Марта</string>
+    <string name="april">Апреля</string>
+    <string name="may">Мая</string>
+    <string name="june">Июня</string>
+    <string name="july">Июля</string>
+    <string name="august">Августа</string>
+    <string name="september">Сентября</string>
+    <string name="october">Октября</string>
+    <string name="november">Ноября</string>
+    <string name="december">Декабря</string>
+
+    <!--gender-->
+    <string name="man">Мужской</string>
+    <string name="woman">Женский</string>
+    <string name="not_specified">Не указан</string>
 
     <!--bottom_navigation-->
     <string name="movie">Кино</string>
@@ -30,7 +64,6 @@
     <string name="upcoming">Скоро</string>
     <string name="top_rated">Лучшие</string>
 
-
     <!--searchView-->
     <string name="search_hint">Поиск</string>
     <string name="empty_data">По вашему запросу ничего не нашлось</string>
@@ -40,7 +73,7 @@
     <string name="error2">Проверьте соединение с интернетом или немного подождите.Возможно ведуться технические работы</string>
     <string name="button_refresh">Обновить страницу</string>
 
-    <!--activity_details-->
+    <!--activity_details_movie-->
     <string name="details_max_average">/10</string>
     <string name="details_country">Страна</string>
     <string name="details_genre">Жанр</string>
@@ -51,9 +84,19 @@
     <string name="details_description">Описание</string>
     <string name="details_credits">Актеры и съемочная группа</string>
     <string name="details_trailers">Трейлеры</string>
+    <string name="details_similar">Похожие</string>
     <string name="details_exist_library">Фильм уже находится в библиотеки</string>
-    <string name="details_added_film">Фильм был добавлен в библиотеку</string>
+    <string name="details_save_film">Фильм был добавлен в библиотеку</string>
+    <string name="details_delete_film">Фильм был удален из библиотеки</string>
+
+    <!--activity_details_person-->
+    <string name="details_credit_read_less">Свернуть биографию</string>
+    <string name="details_credit_cast_movie">Фильмы</string>
+    <string name="details_credit_crew_movie">Съемочная группа</string>
 
     <!--library_fragment-->
     <string name="library_empty_data">Библиотека в данный момент пуста</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

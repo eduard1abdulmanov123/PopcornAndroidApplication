@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ic_launcher_background">#3D3F56</color>
+    <color name="ic_launcher_background">#03A9F4</color>
     <color name="colorPrimary">#3d3f56</color>
     <color name="colorPrimaryDark">#2E3041</color>
     <color name="colorAccent">#5F6274</color>
@@ -8,6 +8,20 @@
     <color name="color_progress_bar">#3d3f56</color>
     <color name="color_background_image">#EBEBEB</color>
     <color name="color_background">#F8F8F8</color>
+
+    <color name="color_experemental">#E1EAF1</color>
+
+    <color name="color_blackout">#1D000000</color>
+
+    <!--button-->
+    <color name="color_button_pressed">#8DDFDFDF</color>
+
+    <!--text-->
+    <color name="color_text_title">#000000</color>
+    <color name="color_text_primary">#353535</color>
+    <color name="color_text_secondary">#9B9B9B</color>
+    <color name="color_text_white">#FFFFFF</color>
+    <color name="color_text_light_gray">#F1F1F1</color>
 
     <!--bottom_navigation-->
     <color name="color_select_item">#FFFFFF</color>
@@ -17,9 +31,10 @@
     <!--search_view-->
     <color name="color_item_search_view">#3d3f56</color>
 
-
-    <color name="color_text_title">#000000</color>
-    <color name="color_text_primary">#353535</color>
-    <color name="color_text_secondary">#9B9B9B</color>
-    <color name="color_text_white">#FFFFFF</color>
+    <!--external_ids-->
+    <color name="color_imdb">#e6ba1d</color>
+    <color name="color_instagram">#d53885</color>
+    <color name="color_themoviedb">#00d570</color>
+    <color name="color_facebook">#36569f</color>
+    <color name="color_twitter">#1ea1f1</color>
 </resources>
