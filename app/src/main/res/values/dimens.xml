@@ -23,9 +23,9 @@
     <!--little_list_item-->
     <dimen name="little_margin_external_left_right">8dp</dimen>
     <dimen name="little_margin_external_top_bottom">4dp</dimen>
-    <dimen name="little_poster_width">110dp</dimen>
-    <dimen name="little_poster_height">150dp</dimen>
-    <dimen name="little_corner_radius">10dp</dimen>
+    <dimen name="little_poster_width">100dp</dimen>
+    <dimen name="little_poster_height">130dp</dimen>
+    <dimen name="little_corner_radius">5dp</dimen>
 
     <!--container_error-->
     <dimen name="size_error_icon">230dp</dimen>
@@ -46,4 +46,5 @@
 
     <!--activity_details_person-->
     <dimen name="details_person_size_icon">25dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

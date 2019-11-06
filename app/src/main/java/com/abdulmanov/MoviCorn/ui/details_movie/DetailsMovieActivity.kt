@@ -13,18 +13,17 @@ import android.view.ViewTreeObserver
 import androidx.core.content.ContextCompat
 import com.abdulmanov.MoviCorn.BaseApp
 import com.abdulmanov.MoviCorn.di.module.ActivityModule
-import com.abdulmanov.MoviCorn.model.vo.movie.DetailsMovie
-import kotlinx.android.synthetic.main.content_empty_progress_bar.*
-import kotlinx.android.synthetic.main.content_error.*
+import kotlinx.android.synthetic.main.layout_progress_bar.*
+import kotlinx.android.synthetic.main.layout_error.*
 import javax.inject.Inject
 import com.abdulmanov.MoviCorn.R
 import com.abdulmanov.MoviCorn.ui.details_person.DetailsPersonActivity
 import com.abdulmanov.MoviCorn.adapters.CreditsAdapter
 import com.abdulmanov.MoviCorn.adapters.FilmLittleAdapter
 import com.abdulmanov.MoviCorn.adapters.VideosAdapter
-import com.abdulmanov.MoviCorn.common.Constants.Network.Companion.YOUTUBE_WATCH_BASE_URL
 import com.abdulmanov.MoviCorn.common.initHorizontalRecyclerView
 import com.abdulmanov.MoviCorn.common.loadImg
+import com.abdulmanov.domain.models.movies.MovieDetails
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Callback
@@ -46,17 +45,21 @@ class DetailsMovieActivity : AppCompatActivity(),DetailsMovieContract.View {
 
     @Inject
     lateinit var mPresenter: DetailsMovieContract.Presenter
-    lateinit var detailsMovie: DetailsMovie
-    lateinit var saveMovieInLibraryMenuItem:MenuItem
+    lateinit var detailsMovie: MovieDetails
+    private lateinit var saveMovieInLibraryMenuItem:MenuItem
+    private var filmID:Long? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details_movie)
         setSupportActionBar(details_movie_toolbar)
+        intent.extras?.let {
+            filmID = it.getLong(EXTRA_FILM_ID)
+        }
         initUI()
         BaseApp.instance.appComponent.activityComponent(ActivityModule(this)).inject(this)
         mPresenter.attach(this)
-        mPresenter.loadData(intent.extras?.get(EXTRA_FILM_ID) as Long, "ru-RU")
+        mPresenter.loadData(filmID!!, "ru-RU")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -70,7 +73,7 @@ class DetailsMovieActivity : AppCompatActivity(),DetailsMovieContract.View {
             R.id.details_movie_send -> {
                 val intentSend = Intent(Intent.ACTION_SEND)
                 intentSend.type = "text/plain"
-                intentSend.putExtra(Intent.EXTRA_TEXT, detailsMovie.movieDbID)
+                intentSend.putExtra(Intent.EXTRA_TEXT, detailsMovie.tmdbUrl)
                 startActivity(intentSend)
                 true
             }
@@ -89,10 +92,10 @@ class DetailsMovieActivity : AppCompatActivity(),DetailsMovieContract.View {
 
     override fun showEmptyProgress(show: Boolean) {
         if (show) {
-            empty_progress_bar.visibility = View.VISIBLE
+            layout_progress_bar.visibility = View.VISIBLE
             container_details_movie.visibility = View.GONE
         } else {
-            empty_progress_bar.visibility = View.GONE
+            layout_progress_bar.visibility = View.GONE
             container_details_movie.visibility = View.VISIBLE
         }
     }
@@ -108,11 +111,12 @@ class DetailsMovieActivity : AppCompatActivity(),DetailsMovieContract.View {
     }
 
     override fun showError(show: Boolean, error: Throwable?) {
+        Log.d("DetailsMovieError",error.toString())
         if (show) {
-            container_error.visibility = View.VISIBLE
+            layout_error.visibility = View.VISIBLE
             container_details_movie.visibility = View.GONE
         } else {
-            container_error.visibility = View.GONE
+            layout_error.visibility = View.GONE
             container_details_movie.visibility = View.VISIBLE
         }
     }
@@ -127,9 +131,9 @@ class DetailsMovieActivity : AppCompatActivity(),DetailsMovieContract.View {
         saveMovieInLibraryMenuItem.icon = ContextCompat.getDrawable(this,res)
     }
 
-    override fun showData(data: DetailsMovie) {
+    override fun showData(data: MovieDetails) {
         detailsMovie = data
-        if(data.existsInTheDB){
+        if(data.inLocalDb){
             showSaved(true)
         }
 
@@ -174,9 +178,9 @@ class DetailsMovieActivity : AppCompatActivity(),DetailsMovieContract.View {
             details_movie_genres.text = data.genres.joinToString(", ")
         }
 
-        if (!data.runtime.isNullOrEmpty()) {
+        if (data.runtime!=null) {
             container_details_movie_time.visibility = View.VISIBLE
-            details_movie_runtime.text = data.runtime
+            details_movie_runtime.text = getRuntime(data.runtime!!)
         }
 
         details_movie_budget.text = data.budget
@@ -187,14 +191,14 @@ class DetailsMovieActivity : AppCompatActivity(),DetailsMovieContract.View {
             details_movie_overview.text = data.overview
         }
 
-        if (!data.movieCredits.isNullOrEmpty()) {
+        if (!data.credits.isNullOrEmpty()) {
             container_details_movie_credits.visibility = View.VISIBLE
-            (recycler_view_credits.adapter as CreditsAdapter).add(data.movieCredits)
+            (recycler_view_credits.adapter as CreditsAdapter).add(data.credits)
         }
 
-        if (!data.movieVideos.isNullOrEmpty()) {
+        if (!data.videos.isNullOrEmpty()) {
             container_details_movie_videos.visibility = View.VISIBLE
-            (recycler_view_videos.adapter as VideosAdapter).add(data.movieVideos)
+            (recycler_view_videos.adapter as VideosAdapter).add(data.videos)
         }
 
         if(!data.similar.isNullOrEmpty()){
@@ -214,10 +218,8 @@ class DetailsMovieActivity : AppCompatActivity(),DetailsMovieContract.View {
 
         details_movie_app_bar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             if(appBarLayout.totalScrollRange+verticalOffset==0){
-                details_movie_toolbar.background = null
                 details_movie_toolbar_layout.title = detailsMovie.title
             }else{
-                details_movie_toolbar.setBackgroundResource(R.drawable.rectangle_gray_transparent_gradient)
                 details_movie_toolbar_layout.title = ""
             }
         })
@@ -230,13 +232,12 @@ class DetailsMovieActivity : AppCompatActivity(),DetailsMovieContract.View {
         })
 
         button_refresh.setOnClickListener {
-            mPresenter.refresh((intent.extras?.get(EXTRA_FILM_ID) as Long), "ru-RU")
+            mPresenter.refresh(filmID!!, "ru-RU")
         }
 
         recycler_view_videos.initHorizontalRecyclerView(
             VideosAdapter {
-                val address = Uri.parse(YOUTUBE_WATCH_BASE_URL+it)
-                startActivity(Intent(Intent.ACTION_VIEW,address))
+                startActivity(Intent(Intent.ACTION_VIEW,Uri.parse(it)))
             }
         )
 
@@ -253,4 +254,27 @@ class DetailsMovieActivity : AppCompatActivity(),DetailsMovieContract.View {
         )
     }
 
+    private fun getRuntime(runtime: Int): String {
+        val hoursNumber = runtime / 60
+        val minutesNumber = runtime % 60
+        val hoursString =
+            if (hoursNumber == 0)
+                ""
+            else
+                resources.getQuantityString(
+                    R.plurals.runtime_hours,
+                    hoursNumber,
+                    hoursNumber
+                ) + " "
+        val minutesString =
+            if (minutesNumber == 0)
+                ""
+            else
+                resources.getQuantityString(
+                    R.plurals.runtime_minutes,
+                    minutesNumber,
+                    minutesNumber
+                )
+        return "$hoursString$minutesString"
+    }
 }

@@ -1,22 +1,18 @@
 package com.abdulmanov.MoviCorn.common
 
 
-import android.animation.ObjectAnimator
-import android.app.Activity
 import android.content.Context
+import android.graphics.Point
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
+import android.view.WindowManager
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.abdulmanov.MoviCorn.model.vo.movie.MovieCredit
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
@@ -71,25 +67,6 @@ fun ImageView.loadImg(imageUrl:Int,placeHolder: Int? = null,errorImage:Int?=null
         picasso.into(this)
 }
 
-fun Context.hideKeyboard(view:View){
-    val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-    imm.hideSoftInputFromWindow(view.windowToken,0)
-}
-
-fun Context.showKeyboard(){
-    val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,InputMethodManager.HIDE_IMPLICIT_ONLY)
-}
-
-fun EditText.focus(show:Boolean){
-    if(show){
-        requestFocus()
-        context.showKeyboard()
-    }else{
-        clearFocus()
-        context.hideKeyboard(this)
-    }
-}
 
 fun RecyclerView.initHorizontalRecyclerView(customAdapter: RecyclerView.Adapter<*>){
     ViewCompat.setNestedScrollingEnabled(this,false)
@@ -99,4 +76,11 @@ fun RecyclerView.initHorizontalRecyclerView(customAdapter: RecyclerView.Adapter<
         false
     )
     adapter = customAdapter
+}
+
+fun Context.getScreenSize():Point{
+    val wm = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+    return Point().apply {
+        wm.defaultDisplay.getSize(this)
+    }
 }

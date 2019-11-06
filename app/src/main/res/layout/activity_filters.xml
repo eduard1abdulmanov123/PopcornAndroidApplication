@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.filters.FiltersActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/activity_filters_app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/activity_filters_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/filter_title_genres"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/size_text_primary"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_filters_app_bar_layout" />
+
+    <com.nex3z.flowlayout.FlowLayout
+        android:id="@+id/filters_genres"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:flChildSpacing="4dp"
+        app:flRowSpacing="4dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"/>
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/filter_title_years"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/size_text_primary"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filters_genres" />
+
+    <com.abdulmanov.customviews.view.CrystalRangeSeekbar
+        android:id="@+id/filters_years_range_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:corner_radius="10"
+        app:bar_height="5dp"
+        app:bar_color="@android:color/darker_gray"
+        app:bar_highlight_color="@color/colorPrimary"
+        app:left_thumb_color="@color/colorPrimary"
+        app:right_thumb_color="@color/colorPrimary"
+        app:left_thumb_color_pressed="@color/colorPrimaryDark"
+        app:right_thumb_color_pressed="@color/colorPrimaryDark"
+        app:min_value="1960"
+        app:data_type="_integer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+    <TextView
+        android:id="@+id/filters_years_min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/background_rectangle_stroke"
+        android:padding="8dp"
+        app:layout_constraintStart_toStartOf="@+id/filters_years_range_seekbar"
+        app:layout_constraintTop_toBottomOf="@+id/filters_years_range_seekbar" />
+
+    <TextView
+        android:id="@+id/filters_years_max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/background_rectangle_stroke"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/filters_years_range_seekbar"
+        app:layout_constraintTop_toBottomOf="@+id/filters_years_range_seekbar" />
+
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/filter_title_vote_average"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/size_text_primary"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filters_years_min" />
+
+    <com.abdulmanov.customviews.view.CrystalRangeSeekbar
+        android:id="@+id/filters_vote_average_range_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:corner_radius="10"
+        app:bar_height="5dp"
+        app:bar_color="@android:color/darker_gray"
+        app:bar_highlight_color="@color/colorPrimary"
+        app:left_thumb_color="@color/colorPrimary"
+        app:right_thumb_color="@color/colorPrimary"
+        app:left_thumb_color_pressed="@color/colorPrimaryDark"
+        app:right_thumb_color_pressed="@color/colorPrimaryDark"
+        app:min_value="0"
+        app:max_value="10"
+        app:data_type="_integer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <TextView
+        android:id="@+id/filters_vote_average_min"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/background_rectangle_stroke"
+        android:padding="8dp"
+        app:layout_constraintStart_toStartOf="@+id/filters_vote_average_range_seekbar"
+        app:layout_constraintTop_toBottomOf="@+id/filters_vote_average_range_seekbar" />
+
+    <TextView
+        android:id="@+id/filters_vote_average_max"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/background_rectangle_stroke"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/filters_vote_average_range_seekbar"
+        app:layout_constraintTop_toBottomOf="@+id/filters_vote_average_range_seekbar" />
+
+    <com.github.nikartm.button.FitButton
+        android:id="@+id/filters_apply"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:gravity="center"
+        app:fb_backgroundColor="@color/colorPrimary"
+        app:fb_cornerRadius="@dimen/radius_button_refresh"
+        app:fb_rippleColor="@color/colorAccent"
+        app:fb_text="@string/filter_apply"
+        app:fb_textColor="@color/color_text_white"
+        app:fb_textSize="@dimen/size_text_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filters_vote_average_min" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import com.abdulmanov.MoviCorn.R
 import com.abdulmanov.MoviCorn.common.inflate
 import com.abdulmanov.MoviCorn.common.loadImg
-import com.abdulmanov.MoviCorn.model.vo.movie.MovieVideo
+import com.abdulmanov.domain.models.movies.Video
 import com.squareup.picasso.Callback
 import kotlinx.android.synthetic.main.item_list_video.view.*
 import java.lang.Exception
 
 class VideosAdapter(private val clickListener: (path:String)->Unit): RecyclerView.Adapter<VideosAdapter.VideoViewHolder>() {
 
-    private val videos = mutableListOf<MovieVideo>()
+    private val videos = mutableListOf<Video>()
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): VideoViewHolder {
         return VideoViewHolder(parent)
@@ -27,7 +27,7 @@ class VideosAdapter(private val clickListener: (path:String)->Unit): RecyclerVie
         viewHolder.bind(videos[position])
     }
 
-    fun add(data:List<MovieVideo>){
+    fun add(data:List<Video>){
         videos.addAll(data)
         notifyDataSetChanged()
     }
@@ -36,14 +36,14 @@ class VideosAdapter(private val clickListener: (path:String)->Unit): RecyclerVie
 
         init {
             itemView.setOnClickListener {
-                clickListener.invoke(videos[adapterPosition].pathUrl)
+                clickListener.invoke(videos[adapterPosition].url)
             }
         }
 
-        fun bind(movieVideo: MovieVideo){
+        fun bind(video: Video){
             with(itemView){
                 video_image.loadImg(
-                    movieVideo.thumbnail,
+                    video.thumbnail,
                     R.color.color_background_image,
                     callback = object : Callback{
                         override fun onSuccess() {

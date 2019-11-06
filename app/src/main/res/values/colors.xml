@@ -37,4 +37,6 @@
     <color name="color_themoviedb">#00d570</color>
     <color name="color_facebook">#36569f</color>
     <color name="color_twitter">#1ea1f1</color>
+
+    <color name="color_selected">#e1f5fe</color>
 </resources>

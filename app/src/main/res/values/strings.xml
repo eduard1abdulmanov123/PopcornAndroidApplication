@@ -1,31 +1,32 @@
 <resources>
-    <string name="app_name">MoviCorn</string>
-    <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
-    <string name="read_more">Читать больше</string>
-    <string name="view_all">Показать всё</string>
-    <string name="back">Назад</string>
-    <string name="send">Отправить</string>
-    <string name="add">Добавить в избранное</string>
-
-    <string name="vote_count_zero">Данный фильм еще не оценен</string>
     <plurals name="vote_count">
         <item quantity="one">На основании %d оценки</item>
         <item quantity="other">На основании %d оценок</item>
     </plurals>
-
     <plurals name="runtime_hours">
         <item quantity="one">%d час</item>
         <item quantity="few">%d часа</item>
         <item quantity="many">%d часов</item>
         <item quantity="other">%d часов</item>
     </plurals>
-
     <plurals name="runtime_minutes">
         <item quantity="one">%d минута</item>
         <item quantity="few">%d минуты</item>
         <item quantity="many">%d минут</item>
         <item quantity="other">%d минут</item>
     </plurals>
+    <string name="app_name">MoviCorn</string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="read_more">Читать больше</string>
+    <string name="view_all">Показать всё</string>
+    <string name="back">Назад</string>
+
+    <string name="send">Отправить</string>
+    <string name="add_in_library">Добавить в избранное</string>
+
+    <string name="add_filter">Добавить фильтер</string>
+
+    <string name="vote_count_zero">Данный фильм еще не оценен</string>
 
 
     <!--external_ids-->
@@ -36,45 +37,33 @@
     <string name="instagram">Instagram</string>
 
     <!--month-->
-    <string name="january">Января</string>
-    <string name="february">Февраля</string>
-    <string name="march">Марта</string>
-    <string name="april">Апреля</string>
-    <string name="may">Мая</string>
-    <string name="june">Июня</string>
-    <string name="july">Июля</string>
-    <string name="august">Августа</string>
-    <string name="september">Сентября</string>
-    <string name="october">Октября</string>
-    <string name="november">Ноября</string>
-    <string name="december">Декабря</string>
+    <string name="man">Мужской</string>
 
     <!--gender-->
-    <string name="man">Мужской</string>
     <string name="woman">Женский</string>
     <string name="not_specified">Не указан</string>
+    <string name="tape">Лента</string>
 
     <!--bottom_navigation-->
-    <string name="movie">Кино</string>
     <string name="search">Поиск</string>
     <string name="library">Библиотека</string>
+    <string name="now_playing">В прокате</string>
 
     <!--tab layout-->
-    <string name="now_playing">В прокате</string>
     <string name="upcoming">Скоро</string>
     <string name="top_rated">Лучшие</string>
+    <string name="search_hint">Поиск</string>
 
     <!--searchView-->
-    <string name="search_hint">Поиск</string>
     <string name="empty_data">По вашему запросу ничего не нашлось</string>
+    <string name="error1">Ой! Что-то пошло не так</string>
 
     <!--container_error-->
-    <string name="error1">Ой! Что-то пошло не так</string>
     <string name="error2">Проверьте соединение с интернетом или немного подождите.Возможно ведуться технические работы</string>
     <string name="button_refresh">Обновить страницу</string>
+    <string name="details_max_average">/10</string>
 
     <!--activity_details_movie-->
-    <string name="details_max_average">/10</string>
     <string name="details_country">Страна</string>
     <string name="details_genre">Жанр</string>
     <string name="details_time">Время</string>
@@ -88,15 +77,52 @@
     <string name="details_exist_library">Фильм уже находится в библиотеки</string>
     <string name="details_save_film">Фильм был добавлен в библиотеку</string>
     <string name="details_delete_film">Фильм был удален из библиотеки</string>
+    <string name="details_credit_read_less">Свернуть биографию</string>
 
     <!--activity_details_person-->
-    <string name="details_credit_read_less">Свернуть биографию</string>
     <string name="details_credit_cast_movie">Фильмы</string>
     <string name="details_credit_crew_movie">Съемочная группа</string>
-
-    <!--library_fragment-->
     <string name="library_empty_data">Библиотека в данный момент пуста</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--library_fragment-->
+    <string name="library_title_toolbar">Библиотека</string>
+    <string name="movie_main_title_toolbar">Лента</string>
+
+    <!--fragment_movie_main -->
+    <string name="movie_main_recommendations">Рекомендации</string>
+    <string name="movie_main_now_playing">В кино</string>
+    <string name="movie_main_upcoming">Скоро на экранах</string>
+    <string name="movie_main_popular">Популярное</string>
+    <string name="movie_main_top_rated">Лучшие фильмы</string>
+    <string name="title_activity_filter">Фильтры</string>
+
+
+
+    <string name="library_action_title">Выбрано: %1$d</string>
+    <string name="library_action_choose_all">Выбрать все</string>
+    <string name="library_action_cancel">Отменить</string>
+    <string name="library_action_delete_selected">Удалить</string>
+    <string name="library_action_message_delete">Фильмы были удалены</string>
+
+    <string name="filter_title_years">Год</string>
+    <string name="filter_title_vote_average">Рейтинг</string>
+    <string name="filter_title_genres">Жанр</string>
+    <string name="filter_apply">Применить фильтры</string>
+
+    <string-array name="month">
+        <item>января</item>
+        <item>февраля</item>
+        <item>марта</item>
+        <item>апреля</item>
+        <item>мая</item>
+        <item>июня</item>
+        <item>июля</item>
+        <item>августа</item>
+        <item>сентября</item>
+        <item>октября</item>
+        <item>ноября</item>
+        <item>декабря</item>
+    </string-array>
+
+
 </resources>

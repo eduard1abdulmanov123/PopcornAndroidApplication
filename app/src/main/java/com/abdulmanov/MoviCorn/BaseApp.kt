@@ -1,6 +1,8 @@
 package com.abdulmanov.MoviCorn
 
 import android.app.Application
+import android.content.Context
+import androidx.multidex.MultiDex
 import com.abdulmanov.MoviCorn.di.component.AppComponent
 import com.abdulmanov.MoviCorn.di.component.DaggerAppComponent
 import com.abdulmanov.MoviCorn.di.module.AppModule
@@ -25,4 +27,8 @@ class BaseApp:Application() {
 
     }
 
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(base)
+    }
 }

@@ -7,8 +7,8 @@ import io.reactivex.functions.Function
 
 class MoviePaginator<VO,DTO>(
     private val viewController: ViewControl<VO>,
-    private val mapper: Function<DTO, List<VO>>,
-    var requestFactory:(page:Int)-> Single<DTO>
+    private val mapper: Function<List<DTO>, List<VO>>,
+    var requestFactory:(page:Int)-> Single<List<DTO>>
 ) {
 
     private val FIRST_PAGE = 1

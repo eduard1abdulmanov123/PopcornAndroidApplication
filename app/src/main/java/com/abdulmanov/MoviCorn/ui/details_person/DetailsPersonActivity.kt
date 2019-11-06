@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -15,44 +16,44 @@ import com.abdulmanov.MoviCorn.adapters.FilmLittleAdapter
 import com.abdulmanov.MoviCorn.common.initHorizontalRecyclerView
 import com.abdulmanov.MoviCorn.common.loadImg
 import com.abdulmanov.MoviCorn.di.module.ActivityModule
-import com.abdulmanov.MoviCorn.model.mappers.person.PeopleDetailsDTOtoDetailsPersonMapper as DetailsMapper
-import com.abdulmanov.MoviCorn.model.mappers.person.PeopleMovieCastDTOtoFilmLittleMapper as CastMapper
-import com.abdulmanov.MoviCorn.model.mappers.person.PeopleMovieCrewDTOtoFilmLittleMapper as CrewMapper
-import com.abdulmanov.MoviCorn.model.vo.person.DetailsPerson
 import com.abdulmanov.MoviCorn.ui.details_movie.DetailsMovieActivity
+import com.abdulmanov.domain.models.people.PeopleDetails
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.activity_details_person.*
 import kotlinx.android.synthetic.main.content_details_person.*
-import kotlinx.android.synthetic.main.content_empty_progress_bar.*
-import kotlinx.android.synthetic.main.content_error.*
+import kotlinx.android.synthetic.main.layout_progress_bar.*
+import kotlinx.android.synthetic.main.layout_error.*
 import com.squareup.picasso.Callback
-import kotlinx.android.synthetic.main.activity_details_movie.*
 import java.lang.Exception
 import javax.inject.Inject
 
 class DetailsPersonActivity : AppCompatActivity(),DetailsPersonContract.View {
 
     companion object {
-        private const val EXTRA_CREDIT_ID = "CREDIT_ID"
+        private const val EXTRA_PERSON_ID = "PERSON_ID"
         fun newIntent(context: Context, id: Long): Intent {
             return Intent(context, DetailsPersonActivity::class.java).apply {
-                putExtra(EXTRA_CREDIT_ID, id)
+                putExtra(EXTRA_PERSON_ID, id)
             }
         }
     }
 
     @Inject
     lateinit var presenter:DetailsPersonContract.Presenter
-    lateinit var personData:DetailsPerson
+    lateinit var personData:PeopleDetails
+    private var personID:Long?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details_person)
         setSupportActionBar(details_person_toolbar)
+        intent.extras?.let {
+            personID = it.getLong(EXTRA_PERSON_ID)
+        }
         initUI()
         BaseApp.instance.appComponent.activityComponent(ActivityModule(this)).inject(this)
         presenter.attach(this)
-        presenter.loadData(intent.extras?.getLong(EXTRA_CREDIT_ID) as Long,"ru-RU")
+        presenter.loadData(personID!!,"ru-RU")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -65,7 +66,7 @@ class DetailsPersonActivity : AppCompatActivity(),DetailsPersonContract.View {
             R.id.details_person_send -> {
                 val intentSend = Intent(Intent.ACTION_SEND)
                 intentSend.type = "text/plain"
-                intentSend.putExtra(Intent.EXTRA_TEXT, personData.externalPersonIDs.theMovieDbID)
+                intentSend.putExtra(Intent.EXTRA_TEXT, personData.externalPersonIDs.theMovieDbId)
                 startActivity(intentSend)
                 true
             }
@@ -82,10 +83,10 @@ class DetailsPersonActivity : AppCompatActivity(),DetailsPersonContract.View {
     override fun showEmptyProgress(show:Boolean){
         if(show){
             container_details_person.visibility = View.GONE
-            empty_progress_bar.visibility = View.VISIBLE
+            layout_progress_bar.visibility = View.VISIBLE
         } else{
             container_details_person.visibility = View.VISIBLE
-            empty_progress_bar.visibility = View.GONE
+            layout_progress_bar.visibility = View.GONE
         }
     }
 
@@ -100,20 +101,16 @@ class DetailsPersonActivity : AppCompatActivity(),DetailsPersonContract.View {
     }
 
     override fun showError(show:Boolean,error:Throwable?){
-        /*Log.d("CreditDetailsView",error?.message.toString())
-        error?.stackTrace?.forEach {
-            Log.d("CreditDetailsView",it.toString())
-        }*/
         if(show){
             container_details_person.visibility = View.GONE
-            container_error.visibility = View.VISIBLE
+            layout_error.visibility = View.VISIBLE
         } else{
             container_details_person.visibility = View.VISIBLE
-            container_error.visibility = View.GONE
+            layout_error.visibility = View.GONE
         }
     }
 
-    override fun showData(data: DetailsPerson){
+    override fun showData(data: PeopleDetails){
         personData = data
         details_person_title.text = data.name
         if(data.profilePath!=null) {
@@ -143,14 +140,14 @@ class DetailsPersonActivity : AppCompatActivity(),DetailsPersonContract.View {
             details_person_biography.text = it
         }
 
-        details_person_gender.text = data.gender
+        details_person_gender.text = getGender(data.gender)
 
         with(data.externalPersonIDs){
-            addExternalId(external_id_themoviedb,theMovieDbID)
-            addExternalId(external_id_imdb,imdbID)
-            addExternalId(external_id_facebook,facebookID)
-            addExternalId(external_id_twitter,twitterID)
-            addExternalId(external_id_instagram,instagramID)
+            addExternalId(external_id_themoviedb,theMovieDbId)
+            addExternalId(external_id_imdb,imdbId)
+            addExternalId(external_id_facebook,facebookId)
+            addExternalId(external_id_twitter,twitterId)
+            addExternalId(external_id_instagram,instagramId)
         }
 
         if(data.filmographyPerson.cast.isNotEmpty()){
@@ -174,10 +171,8 @@ class DetailsPersonActivity : AppCompatActivity(),DetailsPersonContract.View {
 
         details_person_app_bar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             if(appBarLayout.totalScrollRange+verticalOffset==0){
-                details_person_toolbar.background = null
                 details_person_toolbar_layout.title = personData.name
             }else{
-                details_person_toolbar.setBackgroundResource(R.drawable.rectangle_gray_transparent_gradient)
                 details_person_toolbar_layout.title = ""
             }
         })
@@ -191,7 +186,7 @@ class DetailsPersonActivity : AppCompatActivity(),DetailsPersonContract.View {
         })
 
         button_refresh.setOnClickListener {
-            presenter.refresh(intent.extras?.getLong(EXTRA_CREDIT_ID) as Long,"ru-RU")
+            presenter.refresh(personID!!,"ru-RU")
         }
 
         biography_read_more.setOnClickListener {
@@ -224,6 +219,16 @@ class DetailsPersonActivity : AppCompatActivity(),DetailsPersonContract.View {
                 val address = Uri.parse(url)
                 startActivity(Intent(Intent.ACTION_VIEW,address))
             }
+        }
+    }
+
+    private fun getGender(gender:Int):String{
+        Log.d("CreditDetailsView", gender.toString())
+        return when(gender){
+            2 -> getString(R.string.man)
+            1 -> getString(R.string.woman)
+            0 -> getString(R.string.not_specified)
+            else ->getString(R.string.not_specified)
         }
     }
 

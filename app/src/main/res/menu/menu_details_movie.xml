@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/details_movie_save_in_library"
-        android:title="@string/add"
+        android:title="@string/add_in_library"
         android:icon="@drawable/ic_save"
         app:showAsAction="always"/>
 

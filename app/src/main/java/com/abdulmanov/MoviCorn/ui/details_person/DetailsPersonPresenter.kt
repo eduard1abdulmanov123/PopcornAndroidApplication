@@ -1,13 +1,10 @@
 package com.abdulmanov.MoviCorn.ui.details_person
 
-import com.abdulmanov.MoviCorn.model.mappers.person.PeopleDetailsDTOtoDetailsPersonMapper
-import com.abdulmanov.core.network.model.Model
+
+import com.abdulmanov.domain.repositories.MoviesRepository
 import io.reactivex.disposables.Disposable
 
-class DetailsPersonPresenter(
-    private val network:Model,
-    private val detailsPersonMapper:PeopleDetailsDTOtoDetailsPersonMapper
-):DetailsPersonContract.Presenter {
+class DetailsPersonPresenter(private val model:MoviesRepository):DetailsPersonContract.Presenter {
 
     private var view: DetailsPersonContract.View? = null
     private var requestDisposable: Disposable? = null
@@ -23,8 +20,7 @@ class DetailsPersonPresenter(
 
     override fun loadData(id: Long, lang: String) {
         view?.showEmptyProgress(true)
-        requestDisposable = network.getPeopleDetails(id,lang)
-            .map(detailsPersonMapper)
+        requestDisposable = model.fetchPeopleDetails(id,lang)
             .subscribe(
                 {
                     view?.showData(it)
@@ -39,8 +35,7 @@ class DetailsPersonPresenter(
 
     override fun refresh(id: Long, lang: String) {
         view?.showRefreshProgress(true)
-        requestDisposable = network.getPeopleDetails(id, lang)
-            .map(detailsPersonMapper)
+        requestDisposable = model.fetchPeopleDetails(id, lang)
             .subscribe(
                 {
                     view?.showData(it)

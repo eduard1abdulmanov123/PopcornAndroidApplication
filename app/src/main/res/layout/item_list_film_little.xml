@@ -4,8 +4,6 @@
     android:id="@+id/cardView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="2dp"
-    android:layout_marginRight="2dp"
     app:cardUseCompatPadding="true"
     app:cardPreventCornerOverlap="false">
 
@@ -53,7 +51,7 @@
             android:id="@+id/film_little_vote_average"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
             android:textColor="@color/color_text_title"
             android:textSize="@dimen/size_text_secondary"
             android:textStyle="bold"

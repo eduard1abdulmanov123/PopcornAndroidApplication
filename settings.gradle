@@ -1,1 +1,1 @@
-include ':app', ':customviews', ':core'
+include ':app', ':customviews', ':core', ':domain'

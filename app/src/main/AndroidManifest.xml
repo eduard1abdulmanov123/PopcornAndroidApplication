@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.abdulmanov.MoviCorn">
-
-    <uses-permission android:name="android.permission.INTERNET" />
+    package="com.abdulmanov.MoviCorn"
+    android:installLocation="preferExternal">
 
     <application
         android:name=".BaseApp"
@@ -14,8 +13,15 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.details_person.DetailsPersonActivity"
+            android:name=".ui.library.library_action.LibraryActionActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.filters.FiltersActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_filter" />
+        <activity
+            android:name=".ui.details_person.DetailsPersonActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.details_movie.DetailsMovieActivity"
             android:screenOrientation="portrait" />
@@ -30,5 +36,7 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/genre_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:textSize="@dimen/size_text_primary"
+    android:textColor="@color/selected_genre"
+    android:background="@drawable/background_rectangle_selected"/>

@@ -1,7 +1,7 @@
 package com.abdulmanov.MoviCorn.ui.details_person
 
-import com.abdulmanov.MoviCorn.model.mappers.person.PeopleDetailsDTOtoDetailsPersonMapper
-import com.abdulmanov.MoviCorn.model.vo.person.DetailsPerson
+
+import com.abdulmanov.domain.models.people.PeopleDetails
 
 interface DetailsPersonContract {
 
@@ -12,7 +12,7 @@ interface DetailsPersonContract {
 
         fun showError(show:Boolean,error:Throwable? = null )
 
-        fun showData(data: DetailsPerson)
+        fun showData(data: PeopleDetails)
 
     }
 

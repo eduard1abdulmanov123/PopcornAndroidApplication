@@ -7,8 +7,7 @@ import android.util.Log
 open class LinearInfiniteScrollListener(
     private val layoutManager: LinearLayoutManager,
     private val visibleThreshold: Int,
-    private val funcEnd: () -> Unit,
-    private val funcDragg:(()->Unit)?=null
+    private val funcEnd: () -> Unit
 ) : RecyclerView.OnScrollListener() {
 
     private var previousTotal = 0
@@ -16,12 +15,6 @@ open class LinearInfiniteScrollListener(
     private var visibleItemCount = 0
     private var totalItemCount = 0
     private var state = StatePagination.LOADING
-
-    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-        if(newState == RecyclerView.SCROLL_STATE_DRAGGING){
-            funcDragg?.invoke()
-        }
-    }
 
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)

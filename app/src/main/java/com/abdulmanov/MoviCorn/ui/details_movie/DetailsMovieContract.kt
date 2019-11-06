@@ -1,7 +1,7 @@
 package com.abdulmanov.MoviCorn.ui.details_movie
 
-import com.abdulmanov.MoviCorn.model.mappers.movies.MoviesDetailsDTOtoDetailsMovieMapper
-import com.abdulmanov.MoviCorn.model.vo.movie.DetailsMovie
+
+import com.abdulmanov.domain.models.movies.MovieDetails
 
 interface DetailsMovieContract {
 
@@ -16,7 +16,7 @@ interface DetailsMovieContract {
 
         fun showSaved(show:Boolean)
 
-        fun showData(data: DetailsMovie)
+        fun showData(data: MovieDetails)
     }
 
     interface Presenter{
@@ -24,7 +24,7 @@ interface DetailsMovieContract {
 
         fun detach()
 
-        fun saveMovieInLibrary(movie: DetailsMovie)
+        fun saveMovieInLibrary(movie: MovieDetails)
 
         fun loadData(id:Long,lang:String)
 

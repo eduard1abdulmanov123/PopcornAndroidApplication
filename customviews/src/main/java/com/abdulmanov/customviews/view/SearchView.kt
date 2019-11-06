@@ -2,8 +2,10 @@ package com.abdulmanov.customviews.view
 
 import android.content.Context
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.util.AttributeSet
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -63,6 +65,9 @@ class SearchView: CardView {
                 typedArray.getColor(R.styleable.SearchView_text_color,
                     ContextCompat.getColor(context,android.R.color.black))
             )
+            editText.hint = typedArray.getString(R.styleable.SearchView_text_hint)
+            editText.setHintTextColor(ContextCompat.getColor(context,android.R.color.darker_gray))
+
         }finally {
             typedArray.recycle()
         }
@@ -91,6 +96,7 @@ class SearchView: CardView {
                 showSearchView(true)
             }
         }
+
         editText.setOnEditorActionListener(object : TextView.OnEditorActionListener{
             override fun onEditorAction(p0: TextView?, actionId: Int, p2: KeyEvent?): Boolean {
                 if(actionId == EditorInfo.IME_ACTION_SEARCH){
@@ -123,23 +129,26 @@ class SearchView: CardView {
         }
     }
 
-    fun setSearchButtonClickListener(click:()->Unit){
+    fun setSearchButtonClickListener(click:()->Unit,default:Boolean = true){
         searchButton.setOnClickListener {
-            clickSearchButton.invoke()
+            if(default)
+                clickSearchButton.invoke()
             click.invoke()
         }
     }
 
-    fun setBackButtonClickListener(click:()->Unit){
+    fun setBackButtonClickListener(click:()->Unit,default:Boolean = true){
         backButton.setOnClickListener {
-            clickBackButton.invoke()
+            if(default)
+                clickBackButton.invoke()
             click.invoke()
         }
     }
 
-    fun setClearButtonClickListener(click:()->Unit){
+    fun setClearButtonClickListener(click:()->Unit,default:Boolean = true){
         clearButton.setOnClickListener {
-            clickClearButton.invoke()
+            if(default)
+                clickClearButton.invoke()
             click.invoke()
         }
     }
@@ -176,5 +185,18 @@ class SearchView: CardView {
                 onTextChanged?.invoke(p0,p1,p2,p3)
             }
         })
+    }
+
+    override fun setOnClickListener(l: OnClickListener?) {
+        super.setOnClickListener(l)
+        with(editText){
+            inputType = InputType.TYPE_NULL
+            setOnFocusChangeListener { view, focus ->
+                if (focus) {
+                    l?.onClick(view)
+                    view.clearFocus()
+                }
+            }
+        }
     }
 }

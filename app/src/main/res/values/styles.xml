@@ -8,7 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="windowActionModeOverlay">true</item>
+    </style>
 
     <!--TabLayout-->
     <style name="TextAppearanceTabLayout" parent="TextAppearance.Design.Tab">
@@ -26,8 +28,9 @@
         <item name="icon_search">@drawable/ic_search_gray</item>
         <item name="icon_clear">@drawable/ic_clear_gray</item>
         <item name="icon_back">@drawable/ic_back_gray</item>
+        <item name="text_hint">@string/search</item>
     </style>
-    
+
     <style name="ButtonStyle">
         <item name="fb_rippleColor">@color/color_button_pressed</item>
         <item name="fb_textSize">@dimen/size_text_secondary</item>
@@ -40,4 +43,11 @@
         <item name="android:paddingTop">@dimen/button_padding_top</item>
         <item name="android:gravity">center</item>
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
