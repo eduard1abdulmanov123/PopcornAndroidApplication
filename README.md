@@ -4,20 +4,17 @@ The app fetches movie data using [themoviedb.org](https://www.themoviedb.org/) A
 
 # Screenshots
 
-## Movies:
-Now Playing | Upcoming | Top Rated
-:-------------:|:-------------:|:-------------:
-<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/1.jpg" width="309" height="480">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/2.jpg" width="309" height="480">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/3.jpg" width="309" height="480">
+Main menu | Movie list | Movie list | Search
+:-------------:|:-------------:|:-------------:|:-------------:
+<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/1.jpg" width="309" height="380">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/2.jpg" width="309" height="380">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/3.jpg" width="309" height="380">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/4.jpg" width="309" height="380">
 
-##  Details:
-1 | 2 | 3
-:-------------:|:-------------:|:-------------:
-<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/4.jpg" width="309" height="480">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/5.jpg" width="309" height="480">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/6.jpg" width="309" height="480">
+Search Empty | Search Query | Filter | Library empty 
+:-------------:|:-------------:|:-------------:|:-------------
+<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/5.jpg" width="309" height="380">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/6.jpg" width="309" height="380">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/7.jpg" width="309" height="380">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/8.jpg" width="309" height="380">
 
-## Search and Library:
-Search | Library | Library Empty 
-:-------------:|:-------------:|:-------------:
-<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/7.jpg" width="309" height="480">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/8.jpg" width="309" height="480">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/9.jpg" width="309" height="480">
+Search Empty | Search Query | Filter | Library empty 
+:-------------:|:-------------:|:-------------:|:-------------
+<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/9.jpg" width="309" height="380">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/10.jpg" width="309" height="380">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/11.jpg" width="309" height="380">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/12.jpg" width="309" height="380">
 
 # Features
 * Infinite scrolling with RecyclerView
@@ -36,8 +33,3 @@ Search | Library | Library Empty
 * Was used the design pattern MVP(Model View Presenter) to make the code simple, understandable, testable and easily maintainable
 * To weaken the relationship code was created, the core module, where you write code making requests to the server, and also implemented to work with the database
 
-# In the next version
-* Will be added filters to search(by year, genre, rating)
-* To be added with the recommendations of the movies
-* There will be a better library. You can sort, divide, and perform other manipulations with movies
-* So it will be an improved design
