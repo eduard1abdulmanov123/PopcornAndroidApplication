@@ -12,16 +12,21 @@ Search Empty | Search Query | Filter | Library empty
 :-------------:|:-------------:|:-------------:|:-------------
 <img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/5.jpg" width="309" height="380">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/6.jpg" width="309" height="380">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/7.jpg" width="309" height="380">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/8.jpg" width="309" height="380">
 
-Search Empty | Search Query | Filter | Library empty 
+Library | Action in library | Details film | Details film
 :-------------:|:-------------:|:-------------:|:-------------
 <img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/9.jpg" width="309" height="380">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/10.jpg" width="309" height="380">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/11.jpg" width="309" height="380">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/12.jpg" width="309" height="380">
 
+Details film | Details person | Details person
+:-------------:|:-------------:|:-------------:
+<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/13.jpg" width="309" height="500">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/14.jpg" width="309" height="500">|<img src="https://github.com/eduard1abdulmanov123/PopcornAndroidApplication/blob/master/screenshots/15.jpg" width="309" height="500">
+
 # Features
-* Infinite scrolling with RecyclerView
-* The work list is implemented as a finite state machine
+* Movie lists
 * Search movies by title
+* Search for a movie by filter
 * Mark as favorite any movie for easy access in the future
-* Watch movie trailers and read movie reviews.
+* Watch movie trailers and read movie reviews
+* View the biography of the actors
 
 # Used Libraries:
 * RxJava2 and Retrofit2 libraries to manage Rest Client
